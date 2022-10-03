@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-    int a = 22;
+    int a = 24;
     int b = 7;
     int c;
     float d;
