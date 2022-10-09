@@ -102,3 +102,8 @@ $RECYCLE.BIN/
 *.ilk
 *.pdb
 *.obj
+/CMakeLists.txt
+/week1/examples
+/week2/examples
+/week3/examples
+/week4/examples
