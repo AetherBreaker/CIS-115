@@ -47,15 +47,19 @@ void Reverse_array(double array[], int length)[]
     {
         newarray[newindex] = array[oldindex];
     }
-
-    return newarray
+    for (
+        int index = 0;
+        index < length;
+        index++
+        )
+    {
+        array[index] = newarray[index];
+    }
 }
 
 int main()
-    {
-        double x[11] = { 1.51, 2.515, 3.125, 4.0, 5.91, 6.2924, 7.9195, 8.09, 9.1, 10.49178 };
+{
 
-        Show_array(x, 11);
 
-        return 0;
-    }
+    return 0;
+}

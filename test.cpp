@@ -4,8 +4,7 @@ using namespace std;
 
 int main()
 {
-    int product;
-
+    int product = 1;
     for (
         int x = 1;
         x < 16;
@@ -13,9 +12,8 @@ int main()
         )
     {
         product *= x;
-        cout << product << endl;
     }
     cout << product << endl;
 
-    return 0
+    return 0;
 }
