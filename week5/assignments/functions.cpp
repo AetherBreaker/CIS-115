@@ -5,9 +5,17 @@
 
 using namespace std;
 
-void myprint(string input)
+void myprint(char input[])
 {
-    cout << input << endl;
+    for (
+        int index = 0;
+        x < 50;
+        x++
+        )
+    {
+        cout << input[x];
+    }
+    cout << endl;
 }
 
 
