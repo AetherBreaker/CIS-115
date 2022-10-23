@@ -5,38 +5,38 @@
 
 using namespace std;
 
-void print(int a)
+void iQuote(int a)
 {
     cout << "This is an integer: \"" << a << '"' << endl;
 }
 
-void print(double a)
+void iQuote(double a)
 {
     cout << "This is a double: \"" << a << '"' << endl;
 }
 
-void print(float a)
+void iQuote(float a)
 {
     cout << "This is a float: \"" << a << '"' << endl;
 }
 
-void print(char a)
+void iQuote(char a)
 {
     cout << "This is a char: \"" << a << '"' << endl;
 }
 
-void print(string a)
+void iQuote(string a)
 {
     cout << "This is a string: \"" << a << '"' << endl;
 }
 
 int main()
 {
-    print(8);
-    print(0.1);
-    print('u');
-    print(2134518.800000001235112651);
-    print("eight");
+    iQuote(8);
+    iQuote(0.1);
+    iQuote('u');
+    iQuote(2134518.800000001235112651);
+    iQuote("eight");
 
     return 0;
 }

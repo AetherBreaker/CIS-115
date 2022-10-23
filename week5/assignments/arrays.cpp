@@ -35,9 +35,9 @@ void Show_array(double array[], int length)
     }
 }
 
-void Reverse_array(double array[], int length)[]
+void Reverse_array(double array[], int length)
 {
-    double newarray[];
+    double* newarray = new double[length];
 
     for (
         int oldindex = (length - 1), newindex = 0;
@@ -57,9 +57,44 @@ void Reverse_array(double array[], int length)[]
     }
 }
 
+void Reverse_part_array(double array[], int length)
+{
+    double* newarray = new double[length];
+
+    for (
+        int oldindex = (length - 1), newindex = 0;
+        oldindex > -1;
+        oldindex--, newindex++
+        )
+    {
+        newarray[newindex] = array[oldindex];
+    }
+    for (
+        int index = 1;
+        index < length - 1;
+        index++
+        )
+    {
+        array[index] = newarray[index];
+    }
+}
+
 int main()
 {
+    double myray[10];
 
+    Fill_array(myray, 10);
+    cout << endl;
+    Show_array(myray, 10);
+    cout << endl;
+    Reverse_array(myray, 10);
+    cout << endl;
+    Show_array(myray, 10);
+    cout << endl;
+    Reverse_part_array(myray, 10);
+    cout << endl;
+    Show_array(myray, 10);
+    cout << endl;
 
     return 0;
 }
