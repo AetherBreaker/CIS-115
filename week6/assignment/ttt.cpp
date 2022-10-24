@@ -1,3 +1,7 @@
+// Tic Tac Toe
+// Jacob Ogden
+
+
 #include <stdlib.h>
 #include <conio.h>
 #include <iostream>
@@ -89,6 +93,7 @@ void displayBoard()
         ss << "\033[4m";
     }
     ss << gameboard[9] << "\033[0m\n";
+    ss << "\n\n Made by Jacob Ogden\n";
 
     string s = ss.str();
     cout << s;
