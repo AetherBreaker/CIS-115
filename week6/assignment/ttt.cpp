@@ -27,7 +27,6 @@ int result;             // 0 = draw
 
 void displayBoard()
 {
-    system("CLS");
     stringstream ss;
 
     ss << "Navigate the board using the arrow keys!\n";
@@ -96,6 +95,7 @@ void displayBoard()
     ss << "\n\n Made by Jacob Ogden\n";
 
     string s = ss.str();
+    system("CLS");
     cout << s;
 }
 
