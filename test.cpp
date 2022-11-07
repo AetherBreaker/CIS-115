@@ -1,19 +1,9 @@
+#include <format>
 #include <iostream>
+#include <string>
+#include <string_view>
 
-using namespace std;
 
-int main()
-{
-    int product = 1;
-    for (
-        int x = 1;
-        x < 16;
-        x += 2
-        )
-    {
-        product *= x;
-    }
-    cout << product << endl;
-
-    return 0;
+int main() {
+    std::cout << std::format("{} {}!", "Hello", "world", "something"); // OK, produces "Hello world!"
 }
