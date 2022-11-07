@@ -19,11 +19,9 @@ int main()
         return 0;
     }
 
-    dataFile >> input;
-    while (!dataFile.eof())
+    for (dataFile >> input; !dataFile.eof(); dataFile >> input)
     {
         cout << input << endl;
-        dataFile >> input;
     }
 
     // eofbit flag isnt raised until the eof is actually requested via dataFile >> input;
