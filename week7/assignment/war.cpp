@@ -89,21 +89,29 @@ void deal(array<Card, 53>& wDeck)
 void display(array<Card, 53>& wDeck)
 {
     std::stringstream ss;
+    const string border = "─────────────────────────";
     ss << "Display the Deck..." << endl;
-    int x = 0;
-    int y = 0;
-    for (int i = 0; i < 52; i++)
+    ss << '┌';
+    for (int i = 0; i < 4; i++)
     {
-        string test = std::format("{:<3}: {:>5} of {:<8} | ", x + y + 1, wDeck[y + x].face, wDeck[y + x].suit);
-        ss << test;
-        x += 13;
-
-        if ((i + 1) % 4 == 0) {
-            x = 0;
-            y++;
-            ss << endl;
-        }
+        ss << border;
     }
+    ss << "┐" << endl;
+    for (int i = 0; i < 12; i++)
+    {
+        ss << '|';
+        for (int y = 0; y < (13 * 4); y += 13)
+        {
+            ss << std::format("{:<3}: {:>5} of {:<8} | ", i + y + 1, wDeck[i + y].face, wDeck[i + y].suit);
+        }
+        ss << endl;
+    }
+    ss << '└';
+    for (int i = 0; i < 4; i++)
+    {
+        ss << border;
+    }
+    ss << "┘" << endl;
     cout << ss.str() << endl << "  - - - - - " << endl;
     return;
 }
