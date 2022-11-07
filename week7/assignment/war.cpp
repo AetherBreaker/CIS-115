@@ -70,48 +70,43 @@ void shuffle(array<Card, 53>& wDeck)
     cout << endl << "  - - - - - " << endl;
 }
 
-void deal(array<Card, 53>& wDeck)
-{
-    std::stringstream ss;
-
-    ss << "The Deal..." << endl;
-    for (int i = 0; i < 52; i++)
-    {
-        ss << std::setw(5) << std::internal << wDeck[i].face << " of " << std::setw(8) << std::left << wDeck[i].suit << " - ";
-
-        if ((i + 1) % 5 == 0)
-            ss << endl;
-    }
-
-    cout << ss.str() << endl << "  - - - - - " << endl;
-}
-
 void display(array<Card, 53>& wDeck)
 {
-    std::stringstream ss;
-    const string border = "─────────────────────────";
-    ss << "Display the Deck..." << endl;
-    ss << '┌';
-    for (int i = 0; i < 4; i++)
-    {
-        ss << border;
-    }
-    ss << "┐" << endl;
+    cout << "Display the Deck..." << endl;
     for (int i = 0; i < 12; i++)
     {
-        ss << '|';
+        cout << '|';
         for (int y = 0; y < (13 * 4); y += 13)
         {
-            ss << std::format("{:<3}: {:>5} of {:<8} | ", i + y + 1, wDeck[i + y].face, wDeck[i + y].suit);
+            cout << std::format(
+                "{:>3} {:>5} of {:<8} | ",
+                std::to_string(i + y + 1) + ":",
+                wDeck[i + y].face, wDeck[i + y].suit
+            );
         }
-        ss << endl;
+        cout << endl;
     }
-    ss << '└';
-    for (int i = 0; i < 4; i++)
-    {
-        ss << border;
-    }
-    ss << "┘" << endl;
-    cout << ss.str() << endl << "  - - - - - " << endl;
+    cout << endl << endl;
     return;
 }
+
+void deal(array<Card, 53>& wDeck)
+{
+    cout << "The Deal..." << endl;
+    for (int i = 0; i < 12; i++)
+    {
+        cout << '|';
+        for (int y = 0; y < (13 * 4); y += 13)
+        {
+            cout << std::format(
+                "{:>3} {:>5} of {:<8} | ",
+                std::to_string(i + y + 1) + ":",
+                wDeck[i + y].face, wDeck[i + y].suit
+            );
+        }
+        cout << endl;
+    }
+    cout << endl << endl;
+}
+
+
