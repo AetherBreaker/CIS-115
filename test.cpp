@@ -1,9 +1,18 @@
-#include <format>
+
+#include <stdio.h>
 #include <iostream>
-#include <string>
-#include <string_view>
+
+// function to stream an inputted unicode character to the console
+void streamUnicodeChar(wchar_t c) {
+    std::wcout << c;
+}
 
 
-int main() {
-    std::cout << std::format("{} {}!", "Hello", "world", "something"); // OK, produces "Hello world!"
+
+int wmain() {
+
+    std::wcout << L'\u2500' << std::endl;
+    system("pause");
+    return 0;
+
 }
