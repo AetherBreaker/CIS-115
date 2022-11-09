@@ -63,6 +63,15 @@ class War {
 
     bool winCondition() {
         if (player1.size() <= 0 || player2.size() <= 0) {
+            wcout << endl << endl << L"Game Over!" << endl;
+            if (player1.size() > player2.size()) {
+                wcout << L"Player 1 wins!" << endl;
+            }
+            else {
+                wcout << L"Player 2 wins!" << endl;
+            }
+            wcout << L"Player 1 has " << player1.size() << L" cards left." << endl;
+            wcout << L"Player 2 has " << player2.size() << L" cards left." << endl;
             return false;
         }
         return true;
@@ -305,7 +314,6 @@ class War {
                 wcout << endl << endl;
                 swabTheDeques();
                 displayPlayerDecks();
-                system("pause");
                 wcout << endl << endl;
             }
         }
