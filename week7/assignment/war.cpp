@@ -320,7 +320,7 @@ class War {
     }
 
     bool war() {
-        array<MatchData, 5> warData;
+        array<MatchData, 4> warData;
         warData[0] = {player1.front(), player2.front()};
         warData[1] = {player1.at(1), player2.at(1)};
         warData[2] = {player1.at(2), player2.at(2)};
@@ -423,12 +423,14 @@ class War {
                 player1.push_back(item.pl1);
                 player1.push_back(item.pl2);
             }
+            return true;
         }
         else {
             for (MatchData item : warData) {
                 player2.push_back(item.pl1);
                 player2.push_back(item.pl2);
             }
+            return false;
         }
     }
 };
