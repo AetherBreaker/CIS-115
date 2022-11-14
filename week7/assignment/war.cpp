@@ -4,7 +4,6 @@
 #include <string>
 #include <array>
 #include <format>
-#include <fcntl.h>
 #include <io.h>
 #include <deque>
 #include <map>
@@ -19,7 +18,7 @@ using std::format;
 
 
 class War {
-    public:
+public:
     struct Card {
         wstring face;
         wstring suit;
@@ -437,7 +436,8 @@ class War {
 
 
 int main() {
-    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stdout), 0x20000);
+    std::locale my_locale(std::locale(), new std::codecvt_utf8<wchar_t>);
 
     War deck;
     deck.deal();
