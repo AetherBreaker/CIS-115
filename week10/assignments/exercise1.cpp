@@ -48,8 +48,8 @@ void addToList(int *p) {
 }
 
 void printList() {
-    for (int *intListIter : intList) {
-        std::cout << format("", std::to_string(intListIter), *intListIter, **intListIter) << std::endl;
+    for (list<int *>::iterator intListIter = intList.begin(); intListIter != intList.end(); intListIter++) {
+        std::cout << "Iterator:\t" << intListIter << "\nPointer:\t" << *intListIter << "\nValue:\t" << **intListIter << std::endl;
     }
 }
 
