@@ -1,18 +1,14 @@
-
-#include <stdio.h>
 #include <iostream>
 
-// function to stream an inputted unicode character to the console
-void streamUnicodeChar(wchar_t c) {
-    std::wcout << c;
-}
+int x = 3;
+int *ptr = &x;
 
-
-
-int wmain() {
-
-    std::wcout << L'\u2500' << std::endl;
-    system("pause");
+int main() {
+    std::cout << "x = " << x << std::endl;
+    std::cout << "&x = " << &x << std::endl;
+    // std::cout << "*x = " << *x << std::endl;
+    std::cout << "ptr = " << ptr << std::endl;
+    std::cout << "*ptr = " << *ptr << std::endl;
+    std::cout << "&ptr = " << &ptr << std::endl;
     return 0;
-
 }
