@@ -5,8 +5,7 @@ using std::array;
 using std::cout;
 using std::endl;
 
-// Given two char pointers pointing into a char array, find and output the number of characters between the two pointed-to characters (zero if they point to the same element). In other words,
-// point each pointer to an element of the array and output the char elements between the two.
+
 int main() {
     array<char, 10> arr = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
     char *ptr1 = &arr[0];
