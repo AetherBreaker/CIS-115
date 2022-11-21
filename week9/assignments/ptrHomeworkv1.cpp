@@ -12,24 +12,51 @@ void dispArray(double ar[], int n);				// show but don't change
 void reValue(double r, double ar[], int n);			// multiply each n elements by r and update
 
 
-int main(int argc, char *argv[]) 
-{
-	
-	double properties[MAX];
-	int size = loadArray(properties, MAX);
-	dispArray(properties, size);
+int main(int argc, char *argv[]) {
 
-	cout << "Enter the revaluation factor: ";
-	double factor;
-	cin >> factor;
+    double properties[MAX];
+    int size = loadArray(properties, MAX);
+    dispArray(properties, size);
 
-	reValue(factor, properties, size);
-	dispArray(properties, size);
-	
-	cout <<  "Done!" << endl;
-	
-	return 0;
- 	
+    cout << "Enter the revaluation factor: ";
+    double factor;
+    cin >> factor;
+
+    reValue(factor, properties, size);
+    dispArray(properties, size);
+
+    cout << "Done!" << endl;
+
+    return 0;
+
+}
+
+int loadArray(double ar[], int limit) {
+
+    cout << "Enter the starting number: ";
+    double start;
+    cin >> start;
+
+    for (int i = 0; i < limit; i++) {
+        ar[i] = start + i;
+    }
+
+    return limit;
+}
+
+void dispArray(double ar[], int n) {
+
+    for (int i = 0; i < n; i++) {
+        cout << ar[i] << ' ';
+    }
+    cout << endl;
+}
+
+void reValue(double r, double ar[], int n) {
+
+    for (int i = 0; i < n; i++) {
+        ar[i] *= r;
+    }
 }
 
 // Step #1.    		Write the function definitions for the above prototypes and 

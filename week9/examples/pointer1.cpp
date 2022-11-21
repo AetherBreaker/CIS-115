@@ -4,28 +4,27 @@
 
 using namespace std;
 
-int main()
-{
-	int *intPointer;						//declare pointer of type int
+int main() {
+    int *intPointer;						//declare pointer of type int
 
-	int number;
+    int number;
 
-	intPointer = &number;					//intPointer points to number
+    intPointer = &number;					//intPointer points to number
 
-	cout << "Please enter a number: " << endl;
+    cout << "Please enter a number: " << endl;
 
-	cin >> number;
+    cin >> number;
 
-	cout << "The number is: " << number << endl;					// Direct Access
+    cout << "The number is: " << number << endl;					// Direct Access
 
-	cout << "Using the pointer: " << *intPointer << endl;				// Indirect Access
+    cout << "Using the pointer: " << *intPointer << endl;				// Indirect Access
 
-	cout << "The address of intPointer is: " << &intPointer << endl;		// Location of the pointer
+    cout << "The address of intPointer is: " << &intPointer << endl;		// Location of the pointer
 
-	cout << "The address of number is: " << &number << endl;			// Location of the variable
-	
-	cout << "The contents of intPointer is: " << intPointer << endl;	// Contents
+    cout << "The address of number is: " << &number << endl;			// Location of the variable
 
-	return 0;
+    cout << "The contents of intPointer is: " << intPointer << endl;	// Contents
+
+    return 0;
 }
 
