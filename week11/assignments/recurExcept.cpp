@@ -1,3 +1,5 @@
+// Week 11 - Assignment 1 Exceptions
+// Jacob Ogden
 #include <iostream>
 #include <string>
 #include <exception>
