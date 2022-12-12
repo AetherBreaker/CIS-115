@@ -5,27 +5,51 @@
 #include <chrono>
 #include <mutex>
 #include <condition_variable>
+#include <Windows.h>
+#include <psapi.h>
+
+// Ensure that the PSAPI library is linked.
+#pragma comment(lib, "psapi.lib")
 
 // Declare a class named Profiler.
 class Profiler {
-    public:
-    // Define the constructor of Profiler.
-    // When an object of Profiler is created, the current time is recorded.
-    Profiler(): start_(std::chrono::high_resolution_clock::now()) {}
+    private:
+    HANDLE m_process;
+    SIZE_T m_memoryUsage;
+    // Define a private member variable to store the start time.
+    const std::chrono::time_point<std::chrono::high_resolution_clock> start_;
 
-    // Define the destructor of Profiler.
-    // When an object of Profiler is destroyed, the elapsed time is calculated
-    // and printed to the standard output.
+    public:
+    Profiler(): start_(std::chrono::high_resolution_clock::now()) {
+        // Get the current process.
+        m_process = GetCurrentProcess();
+
+        // Get the initial amount of memory used by the process.
+        UpdateMemoryUsage();
+    }
+
     ~Profiler() {
         const auto end = std::chrono::high_resolution_clock::now();
         const auto elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start_);
 
         std::cout << "Elapsed time: " << elapsed_time.count() << "ms" << std::endl;
+
+        // Print the memory usage when the object goes out of scope.
+        PrintMemoryUsage();
     }
 
-    private:
-    // Define a private member variable to store the start time.
-    const std::chrono::time_point<std::chrono::high_resolution_clock> start_;
+    // Update the amount of memory used by the process.
+    void UpdateMemoryUsage() {
+        PROCESS_MEMORY_COUNTERS_EX pmc;
+        if (GetProcessMemoryInfo(m_process, reinterpret_cast<PPROCESS_MEMORY_COUNTERS>(&pmc), sizeof(pmc))) {
+            m_memoryUsage = pmc.PrivateUsage;
+        }
+    }
+
+    // Print the amount of memory used by the process.
+    void PrintMemoryUsage() {
+        std::cout << "Memory usage: " << m_memoryUsage << " bytes" << std::endl;
+    }
 };
 
 
@@ -72,14 +96,17 @@ void set_flag() {
 }
 
 int main() {
-    // Create two threads: one that waits for the flag to be set to true,
-    // and one that sets the flag to true after a one-second delay
-    std::thread t1(wait_for_flag);
-    std::thread t2(set_flag);
+    {
+        Profiler profiler;
+        // Create two threads: one that waits for the flag to be set to true,
+        // and one that sets the flag to true after a one-second delay
+        std::thread t1(wait_for_flag);
+        std::thread t2(set_flag);
 
-    // Wait for both threads to finish
-    t1.join();
-    t2.join();
+        // Wait for both threads to finish
+        t1.join();
+        t2.join();
+    }
 
     return 0;
 }

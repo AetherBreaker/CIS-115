@@ -1,77 +1,59 @@
-
-// C++ program for function overriding
+#include <Windows.h>
 #include <iostream>
-using namespace std;
+#include <psapi.h>
+#include <chrono>
 
-class base {
+// Ensure that the PSAPI library is linked.
+#pragma comment(lib, "psapi.lib")
+
+class Profiler {
+    private:
+    HANDLE m_process;
+    SIZE_T m_memoryUsage;
+    // Define a private member variable to store the start time.
+    const std::chrono::time_point<std::chrono::high_resolution_clock> start_;
+
     public:
-    virtual void print() {
-        cout << "print base class" <<
-            endl;
+    Profiler(): start_(std::chrono::high_resolution_clock::now()) {
+        // Get the current process.
+        m_process = GetCurrentProcess();
+
+        // Get the initial amount of memory used by the process.
+        UpdateMemoryUsage();
     }
 
-    void show() {
-        cout << "show base class" <<
-            endl;
+    ~Profiler() {
+        const auto end = std::chrono::high_resolution_clock::now();
+        const auto elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(end - start_);
+
+        std::cout << "Elapsed time: " << elapsed_time.count() << "ms" << std::endl;
+
+        // Print the memory usage when the object goes out of scope.
+        PrintMemoryUsage();
+    }
+
+    // Update the amount of memory used by the process.
+    void UpdateMemoryUsage() {
+        PROCESS_MEMORY_COUNTERS_EX pmc;
+        if (GetProcessMemoryInfo(m_process, reinterpret_cast<PPROCESS_MEMORY_COUNTERS>(&pmc), sizeof(pmc))) {
+            m_memoryUsage = pmc.PrivateUsage;
+        }
+    }
+
+    // Print the amount of memory used by the process.
+    void PrintMemoryUsage() {
+        std::cout << "Memory usage: " << m_memoryUsage << " bytes" << std::endl;
     }
 };
 
-class derived: public base {
-    public:
-
-    // print () is already virtual function in
-    // derived class, we could also declared as
-    // virtual void print () explicitly
-    void print() {
-        cout << "print derived class" <<
-            endl;
-    }
-
-    void show() {
-        cout << "show derived class" <<
-            endl;
-    }
-};
-
-// Driver code
 int main() {
-    base b;
-    base *basebasedpointer = &b;
-    derived d;
-    base *basederivedpointer = &d;
-    derived *derivedderivedpointer = &d;
+    // Create a profiler object.
+    Profiler profiler;
 
-    cout << "print() calls:" << endl;
-    cout << "b.print() = ";
-    b.print();
-    cout << "basebasedpointer->print() = ";
-    basebasedpointer->print();
+    // Do some work here. The profiler will automatically measure the memory usage.
 
-    cout << endl;
-
-    cout << "d.print() = ";
-    d.print();
-    cout << "basederivedpointer->print() = ";
-    basederivedpointer->print();
-    cout << "derivedderivedpointer->print() = ";
-    derivedderivedpointer->print();
-
-    cout << endl;
-
-    cout << "show() calls:" << endl;
-    cout << "b.show() = ";
-    b.show();
-    cout << "basebasedpointer->show() = ";
-    basebasedpointer->show();
-
-    cout << endl;
-
-    cout << "d.show() = ";
-    d.show();
-    cout << "basederivedpointer->show() = ";
-    basederivedpointer->show();
-    cout << "derivedderivedpointer->show() = ";
-    derivedderivedpointer->show();
+    // Update the memory usage manually if desired.
+    profiler.UpdateMemoryUsage();
 
     return 0;
 }
