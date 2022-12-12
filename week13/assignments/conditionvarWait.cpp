@@ -1,3 +1,5 @@
+// Jacob Ogden
+
 #include <iostream>
 #include <thread>
 #include <chrono>
