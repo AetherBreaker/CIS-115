@@ -4,19 +4,17 @@
 
 using namespace std;
 
-void backgroundTask()
-{
-	for(int i = 0; i < 15; i++)
-	cout << "Doing Something...  " << i << endl;		
+void backgroundTask() {
+    for (int i = 0; i < 15; i++)
+        cout << "Doing Something...  " << i << endl;
 }
 
-int main(int argc, char *argv[]) 
-{
-	std::thread t((backgroundTask));
+int main(int argc, char *argv[]) {
+    std::thread t((backgroundTask));
 
-	std::thread t1((backgroundTask));
-	
-	t.join();									// join = “wait for the thread to terminate.”
-	t1.join();
-	return 0;	
+    std::thread t1((backgroundTask));
+
+    t.join();									// join = “wait for the thread to terminate.”
+    t1.join();
+    return 0;
 }

@@ -9,17 +9,15 @@
 
 using namespace std;
 
-void my_thread_func()
-{
-	cout << "Hello!" << endl;
+void my_thread_func() {
+    cout << "Hello!" << endl;
 }
 
-int main()
-{
-	thread t(my_thread_func);
-	t.join();									// join() == "Wait for the thread to terminate."
-	
-	cout << "At the end of main() " << endl;
+int main() {
+    thread t(my_thread_func);
+    t.join();									// join() == "Wait for the thread to terminate."
 
-	return 0;
+    cout << "At the end of main() " << endl;
+
+    return 0;
 }

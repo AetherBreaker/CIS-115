@@ -6,15 +6,14 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     cout << "Start..." << endl;
-    
-	chrono::milliseconds sleepDuration(2000);
 
-	this_thread::sleep_for(sleepDuration);
-	
-	cout << "End!" << endl;
-	
-	return 0;
+    chrono::milliseconds sleepDuration(2000);
+
+    this_thread::sleep_for(sleepDuration);
+
+    cout << "End!" << endl;
+
+    return 0;
 }
